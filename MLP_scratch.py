@@ -108,6 +108,8 @@ class Network:
             output_arr.append(output)
         
         return output_arr[0]
+
+    
 #%% DATA
 
 train_mnist=np.genfromtxt("F:/pdf e-reading/Mtech/Datasets/mnist_train.csv",delimiter=",",skip_header=1)
@@ -125,6 +127,8 @@ for y in y_train:
 
 x_test=test_mnist[:,1:]
 y_test=test_mnist[:,0]
+
+
 
 #%% Activation functions
 def sigmoid(x):
@@ -144,6 +148,9 @@ def der_softmax(softmax):
     res=np.diagflat(s) - np.dot(s, s.T)
     print(res)
     return res
+
+
+
 #%%Build model
 
 def model():
@@ -165,26 +172,6 @@ mymodel=model()
 mymodel.fit(x_train,y_train1)
 
 
-#%%
-x_test=x_test.reshape(x_test.shape[0],1,784)
-p=mymodel.predict(x_test[1])
-# print(np.argmax(p))
-# print(y_test[0])
-print(p)
-#%%
-
-correct=0
-for i,x in enumerate(x_train):
-    pred=mymodel.predict(x_train[i])
-    # print("pred",np.argmax(pred),"act",y_test[i])
-    if(y_train[i]==np.argmax(pred)):
-
-        correct+=1
-
-print(correct/len(x_test))
 
 
 
-
-
-# %%
